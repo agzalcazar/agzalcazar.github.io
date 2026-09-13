@@ -6,18 +6,25 @@ Live at <https://agzalcazar.github.io>
 
 ## What it is
 
-A static site. Three files, no build step, no dependencies, no framework.
+A static site. No build step, no dependencies, no framework.
 
 ```
 index.html    content and structure
 style.css     design system and responsive layout
 script.js     theme toggle, scroll reveals, active nav
+.nojekyll     tells GitHub Pages to serve the files as-is
 ```
 
 ## Publishing it
 
-Create an empty repository on GitHub named exactly `agzalcazar.github.io`
-(the name is what makes it a user site served from the domain root), then:
+Create a repository on GitHub named exactly `agzalcazar.github.io` — the name
+is what makes it a user site served from the domain root.
+
+Create it **completely empty**: no README, no .gitignore, no licence. If you tick
+any of those boxes GitHub makes a commit of its own and the push below is
+rejected as non-fast-forward.
+
+Then:
 
 ```bash
 git remote add origin https://github.com/agzalcazar/agzalcazar.github.io.git
@@ -25,8 +32,10 @@ git branch -M main
 git push -u origin main
 ```
 
-Then in the repository: **Settings → Pages → Source → Deploy from a branch**,
-branch `main`, folder `/ (root)`. The first build takes a minute or two.
+A user site publishes from the default branch automatically, so there is usually
+nothing else to do — the first build takes a minute or two. If it does not appear,
+check **Settings → Pages → Source → Deploy from a branch**, branch `main`,
+folder `/ (root)`.
 
 ## Updating it
 
