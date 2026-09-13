@@ -677,7 +677,8 @@ a:hover { color: var(--accent); }
 .portrait {
   display: block;
   width: clamp(180px, 24vw, 270px);
-  aspect-ratio: 4 / 5;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 16px;
   border: 1px solid var(--rule);
@@ -755,6 +756,59 @@ a:hover { color: var(--accent); }
   .spectrum-fig.in .sp-label text { animation: none; }
 }
 
+
+/* -------------------------------------------------------- photographs */
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+  margin: 24px 0 0;
+}
+
+.shots-strip { margin: 0 0 44px; }
+
+.shot { margin: 0; min-width: 0; }
+
+.shot img {
+  display: block;
+  width: 100%;
+  /* height:auto is load-bearing: the width/height attributes on the <img>
+     (there to reserve layout space) otherwise pin the height and the
+     aspect-ratio below is ignored, stretching every photo. */
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  background: var(--bg-2);
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+
+.shot:hover img {
+  transform: translateY(-2px);
+  border-color: var(--rule-2);
+  box-shadow: var(--shadow);
+}
+
+.shot figcaption {
+  margin-top: 9px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+
+/* The dome shot is the strongest image on the page — give it the room. */
+.shot-wide { grid-column: span 2; }
+.shot-wide img { aspect-ratio: 16 / 9; }
+
+.tag-poster {
+  vertical-align: middle;
+  margin-left: 9px;
+  translate: 0 -1px;
+}
+
 /* ------------------------------------------------------ responsive */
 
 @media (max-width: 860px) {
@@ -777,6 +831,8 @@ a:hover { color: var(--accent); }
 }
 
 @media (max-width: 560px) {
+  .shots { grid-template-columns: minmax(0, 1fr); }
+  .shot-wide { grid-column: span 1; }
   body { font-size: 16px; }
   .pub, .talk { grid-template-columns: 1fr; gap: 6px; }
   .pub-year, .talk-year { padding-top: 0; }
@@ -793,6 +849,7 @@ a:hover { color: var(--accent); }
 
 @media print {
   .topbar, .theme-btn, .skip, .hero::before, .skyfield { display: none !important; }
+  .shot img { break-inside: avoid; }
   .sp-continuum { stroke-dashoffset: 0; }
   .sp-line { transform: scaleY(1); }
   .sp-glow, .sp-label text { opacity: 1; }

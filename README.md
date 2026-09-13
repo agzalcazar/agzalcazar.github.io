@@ -12,6 +12,7 @@ A static site. No build step, no dependencies, no framework.
 index.html    content and structure
 style.css     design system and responsive layout
 script.js     theme toggle, star field, parallax, scroll reveals, active nav
+images/       photos used in the hero, talks and outreach sections
 .nojekyll     tells GitHub Pages to serve the files as-is
 ```
 
@@ -56,17 +57,19 @@ A new publication goes at the top of the `<ol class="pubs">` list:
 </li>
 ```
 
-### Adding a photo
+### Photos
 
-Save a portrait as `portrait.jpg` in this folder. That is the whole step — the
-page checks whether the file loads and only then shows the frame, so while the
-file is absent the hero simply renders without it and no broken image appears.
+They live in `images/`, already resized and stripped of EXIF (the originals from
+WhatsApp can carry location data). `portrait.jpg` is the hero photo; the rest are
+referenced from the Talks and Outreach sections.
 
-Crop it roughly 4:5 (portrait); anything else is centre-cropped to fit. Around
-800×1000 px is plenty — keep it under ~300 KB so the page stays fast.
+To swap one, drop a replacement in `images/` under the same name, or add a new
+`<figure class="shot">` block — copy an existing one and update `src`, `alt`,
+`width`, `height` and the caption. The `width`/`height` attributes only reserve
+layout space; the visible crop comes from `aspect-ratio` in `style.css`.
 
-To use a different filename or format, change the `src` on the `<img class="portrait">`
-tag in `index.html`.
+The portrait frame stays hidden until `portrait.jpg` actually loads, so a missing
+file leaves no broken image.
 
 ### Changing the accent colour
 
@@ -96,4 +99,6 @@ python3 -m http.server 8000 --directory .
   empty page.
 - All motion is disabled under `prefers-reduced-motion`.
 - The FECYT CV PDF is deliberately **not** in this repository — it contains a
-  national ID number and should not be published.
+  national ID number and should not be published. `.gitignore` excludes `*.pdf`.
+- The 5 Sigma section has no link yet. When you have one, add it as a `.btn` or
+  `.lnk` anchor inside that block in `index.html`.
