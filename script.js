@@ -290,6 +290,65 @@
     else portrait.addEventListener('load', showPortrait);
   }
 
+  /* ------------------------------------------------ reading progress */
+
+  var bar = document.querySelector('.progress span');
+  if (bar) {
+    var barTicking = false;
+    var updateBar = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      bar.style.width = Math.min(100, Math.max(0, pct)).toFixed(2) + '%';
+    };
+    window.addEventListener('scroll', function () {
+      if (barTicking) return;
+      barTicking = true;
+      requestAnimationFrame(function () { updateBar(); barTicking = false; });
+    }, { passive: true });
+    window.addEventListener('resize', updateBar);
+    updateBar();
+  }
+
+  /* --------------------------------------------------- counting stats */
+
+  var counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    var runCount = function (el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      if (isNaN(target)) return;
+      if (reduceMotion) { el.textContent = String(target); return; }
+
+      var dur = 1100;
+      var t0 = null;
+      var step = function (now) {
+        if (t0 === null) t0 = now;
+        var k = Math.min(1, (now - t0) / dur);
+        // Ease out quint: fast at first, then settling onto the real number.
+        var eased = 1 - Math.pow(1 - k, 5);
+        el.textContent = String(Math.round(target * eased));
+        if (k < 1) requestAnimationFrame(step);
+        else el.textContent = String(target);
+      };
+      requestAnimationFrame(step);
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(counters, runCount);
+    } else {
+      var countWatch = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          runCount(e.target);
+          countWatch.unobserve(e.target);
+        });
+      }, { threshold: 0.6 });
+      Array.prototype.forEach.call(counters, function (el) {
+        el.textContent = '0';
+        countWatch.observe(el);
+      });
+    }
+  }
+
   /* ------------------------------------------------------------ misc */
 
   var year = document.getElementById('year');

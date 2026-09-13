@@ -97,6 +97,12 @@ python3 -m http.server 8000 --directory .
   astronomer actually worked from — so the stars are dark on cream and the
   brighter ones burn a larger blob. A faded night sky on white just reads as an
   empty page.
+- The headline rises a line at a time from behind a mask, the four J-PAS
+  figures count up when scrolled into view, and a hairline at the top edge
+  tracks reading progress.
+- `style.css` and `script.js` are referenced with a `?v=` stamp. Bump it when
+  you change either file, otherwise returning visitors keep the cached copy
+  for up to ten minutes.
 - All motion is disabled under `prefers-reduced-motion`.
 - The FECYT CV PDF is deliberately **not** in this repository — it contains a
   national ID number and should not be published. `.gitignore` excludes `*.pdf`.

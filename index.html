@@ -71,7 +71,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260914">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='9' fill='none' stroke='%2300a97f' stroke-width='2.5'/><circle cx='16' cy='16' r='3' fill='%2300a97f'/></svg>">
 <script>
 // Applied before first paint so a saved theme never flashes the other one.
@@ -79,6 +79,8 @@
 </script>
 </head>
 <body>
+
+<div class="progress" aria-hidden="true"><span></span></div>
 
 <a class="skip" href="#main">Skip to content</a>
 
@@ -116,7 +118,7 @@
     <div class="hero-grid">
       <div class="hero-copy">
     <p class="eyebrow reveal">PhD candidate · Instituto de Astrofísica de Andalucía (IAA-CSIC) · Granada, Spain</p>
-    <h1 class="reveal">Antonio<br>Giménez&nbsp;Alcázar</h1>
+    <h1 class="reveal"><span class="ln"><span>Antonio</span></span><span class="ln"><span>Giménez&nbsp;Alcázar</span></span></h1>
     <p class="lede reveal">I look for <em>extreme emission-line galaxies</em> — rare, furiously star-forming systems in the nearby Universe that behave like the galaxies which reionized the cosmos more than 13&nbsp;billion years ago.</p>
     <div class="hero-links reveal">
       <a class="btn btn-primary" href="mailto:agimenez@iaa.es">
@@ -211,10 +213,10 @@
           <li>Most sources sit <b>above the ξ<sub>ion</sub> threshold</b> normally assumed for reionization.</li>
         </ul>
         <div class="stat-row">
-          <div class="stat"><span class="stat-n">917</span><span class="stat-l">EELGs found</span></div>
-          <div class="stat"><span class="stat-n">56</span><span class="stat-l">optical bands</span></div>
-          <div class="stat"><span class="stat-n">30</span><span class="stat-l">deg² analysed</span></div>
-          <div class="stat"><span class="stat-n">8500</span><span class="stat-l">deg² final survey</span></div>
+          <div class="stat"><span class="stat-n" data-count="917">917</span><span class="stat-l">EELGs found</span></div>
+          <div class="stat"><span class="stat-n" data-count="56">56</span><span class="stat-l">optical bands</span></div>
+          <div class="stat"><span class="stat-n" data-count="30">30</span><span class="stat-l">deg² analysed</span></div>
+          <div class="stat"><span class="stat-n" data-count="8500">8500</span><span class="stat-l">deg² final survey</span></div>
         </div>
         <p class="topic-cite">Giménez-Alcázar, A., Amorín, R., Vílchez, J.&nbsp;M., et al. — <i>Astronomy &amp; Astrophysics</i> <b>706</b>, A261 (2026)
           <a class="lnk" href="https://www.aanda.org/articles/aa/full_html/2026/02/aa57358-25/aa57358-25.html" target="_blank" rel="noopener">Journal</a>
@@ -673,6 +675,6 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=20260914"></script>
 </body>
 </html>
