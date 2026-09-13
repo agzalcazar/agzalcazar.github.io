@@ -762,9 +762,13 @@ a:hover { color: var(--accent); }
 .shots {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  align-items: start;
   gap: 16px;
   margin: 24px 0 0;
 }
+
+/* A lone photo would otherwise stretch across the whole body column. */
+.shots-one { grid-template-columns: minmax(0, 330px); }
 
 .shots-strip { margin: 0 0 44px; }
 
@@ -774,11 +778,10 @@ a:hover { color: var(--accent); }
   display: block;
   width: 100%;
   /* height:auto is load-bearing: the width/height attributes on the <img>
-     (there to reserve layout space) otherwise pin the height and the
-     aspect-ratio below is ignored, stretching every photo. */
+     (there to reserve layout space) otherwise pin the height and stretch
+     the photo. No fixed aspect-ratio here on purpose — a common frame
+     crops the portrait-orientation shots through the subject's head. */
   height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
   border-radius: 10px;
   border: 1px solid var(--rule);
   background: var(--bg-2);
@@ -801,7 +804,6 @@ a:hover { color: var(--accent); }
 
 /* The dome shot is the strongest image on the page — give it the room. */
 .shot-wide { grid-column: span 2; }
-.shot-wide img { aspect-ratio: 16 / 9; }
 
 .tag-poster {
   vertical-align: middle;
