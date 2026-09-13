@@ -25,7 +25,7 @@
   --sans:  "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --wrap: 1080px;
+  --wrap: 1260px;
   --pad: clamp(20px, 5vw, 48px);
 }
 
@@ -386,7 +386,7 @@ a:hover { color: var(--accent); }
   background: var(--accent-bg);
 }
 
-.topic-body > p { margin: 0 0 18px; color: var(--ink-2); text-wrap: pretty; }
+.topic-body > p { margin: 0 0 18px; max-width: 68ch; color: var(--ink-2); text-wrap: pretty; }
 
 .findings {
   margin: 0 0 22px;
@@ -398,6 +398,7 @@ a:hover { color: var(--accent); }
 }
 .findings li {
   position: relative;
+  max-width: 68ch;
   padding-left: 22px;
   color: var(--ink-2);
   font-size: 15.5px;
@@ -418,6 +419,7 @@ a:hover { color: var(--accent); }
 
 .stat-row {
   display: grid;
+  max-width: 680px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   background: var(--rule);
@@ -494,6 +496,8 @@ a:hover { color: var(--accent); }
 
 .pub-year { font-size: 14px; color: var(--ink-3); padding-top: 2px; }
 
+.pub-body { max-width: 76ch; }
+
 .pub-title {
   font-family: var(--serif);
   font-weight: 500;
@@ -537,6 +541,8 @@ a:hover { color: var(--accent); }
 
 .talk-year { font-size: 14px; color: var(--ink-3); padding-top: 3px; }
 
+.talk > div { max-width: 76ch; }
+
 .talk h3 {
   font-family: var(--serif);
   font-weight: 500;
@@ -566,6 +572,7 @@ a:hover { color: var(--accent); }
 
 .about-text p {
   margin: 0 0 18px;
+  max-width: 66ch;
   color: var(--ink-2);
   font-size: 16.5px;
   text-wrap: pretty;
