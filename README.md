@@ -10,6 +10,7 @@ A static site. No build step, no dependencies, no framework.
 
 ```
 index.html    content and structure
+404.html      shown for any unknown path
 style.css     design system and responsive layout
 script.js     theme toggle, star field, parallax, scroll reveals, active nav
 images/       photos used in the hero, talks and outreach sections
@@ -103,6 +104,12 @@ python3 -m http.server 8000 --directory .
 - `style.css` and `script.js` are referenced with a `?v=` stamp. Bump it when
   you change either file, otherwise returning visitors keep the cached copy
   for up to ten minutes.
+- Clicking any photograph opens it in a native `<dialog>`, which gives Escape,
+  the focus trap and focus return without extra code. The paper figures are
+  deliberately excluded: they link to their full-resolution file instead.
+- Colours were checked against WCAG AA. `--ink-3` carries most of the small
+  text and needed darkening in light and lightening in dark to clear 4.5:1;
+  `--accent-solid` exists because white on `--accent` only reached 4.03:1.
 - All motion is disabled under `prefers-reduced-motion`.
 - The FECYT CV PDF is deliberately **not** in this repository — it contains a
   national ID number and should not be published. `.gitignore` excludes `*.pdf`.

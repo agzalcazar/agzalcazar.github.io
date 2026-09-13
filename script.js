@@ -349,6 +349,46 @@
     }
   }
 
+  /* ---------------------------------------------------------- lightbox */
+
+  var box = document.querySelector('.lightbox');
+  if (box && typeof box.showModal === 'function') {
+    var boxImg = box.querySelector('img');
+    var boxCap = box.querySelector('.lightbox-cap');
+
+    var open = function (img) {
+      var fig = img.closest('figure');
+      var cap = fig && fig.querySelector('figcaption');
+      boxImg.src = img.currentSrc || img.src;
+      boxImg.alt = img.alt || '';
+      boxCap.textContent = cap ? cap.textContent.trim() : '';
+      boxCap.hidden = !boxCap.textContent;
+      box.showModal();
+    };
+
+    // Photographs only. The paper figures already link to their full-resolution
+    // file, and a scientific plot is better opened in its own tab.
+    var shots = document.querySelectorAll('.shot img');
+    Array.prototype.forEach.call(shots, function (img) {
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Enlarge: ' + (img.alt || 'photograph'));
+      img.addEventListener('click', function () { open(img); });
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); }
+      });
+    });
+
+    box.querySelector('.lightbox-close').addEventListener('click', function () { box.close(); });
+
+    // Click outside the picture closes it; clicks on the picture must not.
+    box.addEventListener('click', function (e) {
+      if (e.target === box) box.close();
+    });
+
+    box.addEventListener('close', function () { boxImg.removeAttribute('src'); });
+  }
+
   /* ------------------------------------------------------------ misc */
 
   var year = document.getElementById('year');
