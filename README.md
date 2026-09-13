@@ -87,6 +87,13 @@ python3 -m http.server 8000 --directory .
 - The hero spectrum is drawn as inline SVG in `index.html`; it is a schematic of
   an extreme emission-line galaxy, not real data, and the caption says so.
 - The star field is painted on a canvas from a fixed seed, so it looks the same
-  on every visit. All motion is disabled under `prefers-reduced-motion`.
+  on every visit. It drifts slowly and the stars scintillate; the loop only runs
+  while the hero is on screen and stops in a background tab.
+- The two themes render that field differently on purpose. Dark is the night
+  sky: bright points on black. Light is a photographic plate — the negative an
+  astronomer actually worked from — so the stars are dark on cream and the
+  brighter ones burn a larger blob. A faded night sky on white just reads as an
+  empty page.
+- All motion is disabled under `prefers-reduced-motion`.
 - The FECYT CV PDF is deliberately **not** in this repository — it contains a
   national ID number and should not be published.
