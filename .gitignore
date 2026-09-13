@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# never publish the FECYT CV: it contains a national ID number
+*.pdf
