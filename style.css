@@ -17,6 +17,8 @@
   --accent-2:  oklch(0.50 0.11 168);
   --accent-bg: oklch(0.58 0.12 168 / 0.09);
   --shadow:    0 1px 2px rgb(20 22 26 / 0.05), 0 8px 28px -12px rgb(20 22 26 / 0.14);
+  --glow-in:   0.12;
+  --glow-mid:  0.04;
 
   --serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --sans:  "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -40,6 +42,8 @@
     --accent-2:  oklch(0.86 0.11 168);
     --accent-bg: oklch(0.78 0.13 168 / 0.12);
     --shadow:    0 1px 2px rgb(0 0 0 / 0.4), 0 8px 30px -12px rgb(0 0 0 / 0.6);
+    --glow-in:   0.30;
+    --glow-mid:  0.10;
   }
 }
 
@@ -56,6 +60,8 @@
   --accent-2:  oklch(0.86 0.11 168);
   --accent-bg: oklch(0.78 0.13 168 / 0.12);
   --shadow:    0 1px 2px rgb(0 0 0 / 0.4), 0 8px 30px -12px rgb(0 0 0 / 0.6);
+    --glow-in:   0.30;
+    --glow-mid:  0.10;
 }
 
 * { box-sizing: border-box; }
@@ -637,9 +643,120 @@ a:hover { color: var(--accent); }
   .btn:hover { transform: none; }
 }
 
+
+/* -------------------------------------------------- hero: sky field */
+
+.skyfield {
+  position: absolute;
+  /* Taller than the hero so the parallax offset never exposes its edge. */
+  inset: -25% 0 auto 0;
+  width: 100%;
+  height: 150%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  will-change: transform;
+}
+.skyfield.in { opacity: 1; }
+
+/* -------------------------------------------------- hero: layout */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+.portrait-fig { margin: 0; }
+
+.portrait {
+  display: block;
+  width: clamp(180px, 24vw, 270px);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow), 0 0 0 6px var(--accent-bg);
+}
+
+/* -------------------------------------------------- hero: spectrum */
+
+.spectrum-fig {
+  margin: clamp(44px, 7vw, 76px) 0 0;
+  padding-top: clamp(28px, 4vw, 40px);
+  border-top: 1px solid var(--rule);
+}
+
+.spectrum { display: block; width: 100%; height: auto; overflow: hidden; }
+
+#oiiiGlow .g-in  { stop-color: var(--accent); stop-opacity: var(--glow-in); }
+#oiiiGlow .g-mid { stop-color: var(--accent); stop-opacity: var(--glow-mid); }
+#oiiiGlow .g-out { stop-color: var(--accent); stop-opacity: 0; }
+
+.sp-continuum {
+  fill: none;
+  stroke: var(--ink-2);
+  stroke-width: 1.6;
+  opacity: 0.55;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+}
+
+.sp-line {
+  fill: var(--ink-2);
+  transform: scaleY(0);
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+.sp-key { fill: var(--accent); }
+
+.sp-glow { opacity: 0; }
+
+.sp-axis path { fill: none; stroke: var(--rule-2); stroke-width: 1; }
+.sp-tick text { font-family: var(--mono); font-size: 16px; fill: var(--ink-3); }
+.sp-label text { font-family: var(--mono); font-size: 19px; fill: var(--ink-2); opacity: 0; }
+.sp-label-key { fill: var(--accent-2); }
+
+/* Animations are gated on .in so they run with the reveal, not before it. */
+.spectrum-fig.in .sp-continuum { animation: sp-draw 1.5s ease-out .15s forwards; }
+.spectrum-fig.in .sp-line {
+  animation: sp-rise .8s cubic-bezier(.2,.9,.3,1) forwards;
+  animation-delay: calc(.55s + var(--d, 0s));
+}
+.spectrum-fig.in .sp-glow { animation: sp-fade 1.1s ease .9s forwards; }
+.spectrum-fig.in .sp-label text { animation: sp-fade .7s ease 1.25s forwards; }
+
+@keyframes sp-draw { to { stroke-dashoffset: 0; } }
+@keyframes sp-rise { to { transform: scaleY(1); } }
+@keyframes sp-fade { to { opacity: 1; } }
+
+.spectrum-fig figcaption {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skyfield { transition: none; opacity: 1; }
+  .sp-continuum { stroke-dashoffset: 0; }
+  .sp-line { transform: scaleY(1); }
+  .sp-glow, .sp-label text { opacity: 1; }
+  .spectrum-fig.in .sp-continuum,
+  .spectrum-fig.in .sp-line,
+  .spectrum-fig.in .sp-glow,
+  .spectrum-fig.in .sp-label text { animation: none; }
+}
+
 /* ------------------------------------------------------ responsive */
 
 @media (max-width: 860px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .portrait { width: clamp(150px, 40vw, 200px); }
   .topic { grid-template-columns: 1fr; gap: 18px; }
   .topic-head h3 { margin-top: 10px; }
   .about-grid { grid-template-columns: 1fr; }
@@ -647,6 +764,11 @@ a:hover { color: var(--accent); }
 }
 
 @media (max-width: 720px) {
+  /* SVG text scales with the viewBox, so on a narrow screen the small
+     annotations become unreadable — drop them and enlarge the key one. */
+  .sp-tick, .sp-axis { display: none; }
+  .sp-label text:not(.sp-label-key) { display: none; }
+  .sp-label text.sp-label-key { font-size: 34px; }
   .nav { display: none; }
   .brand-name { font-size: 14px; }
 }
@@ -667,7 +789,10 @@ a:hover { color: var(--accent); }
 /* ----------------------------------------------------------- print */
 
 @media print {
-  .topbar, .theme-btn, .skip, .hero::before { display: none !important; }
+  .topbar, .theme-btn, .skip, .hero::before, .skyfield { display: none !important; }
+  .sp-continuum { stroke-dashoffset: 0; }
+  .sp-line { transform: scaleY(1); }
+  .sp-glow, .sp-label text { opacity: 1; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .band, .hero { padding: 16pt 0; }
   .reveal { opacity: 1; transform: none; }

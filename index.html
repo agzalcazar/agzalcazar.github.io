@@ -48,7 +48,10 @@
 <main id="main">
 
 <section id="top" class="hero">
+  <canvas class="skyfield" aria-hidden="true"></canvas>
   <div class="wrap hero-in">
+    <div class="hero-grid">
+      <div class="hero-copy">
     <p class="eyebrow reveal">PhD candidate · Instituto de Astrofísica de Andalucía (IAA-CSIC) · Granada, Spain</p>
     <h1 class="reveal">Antonio<br>Giménez&nbsp;Alcázar</h1>
     <p class="lede reveal">I look for <em>extreme emission-line galaxies</em> — rare, furiously star-forming systems in the nearby Universe that behave like the galaxies which reionized the cosmos more than 13&nbsp;billion years ago.</p>
@@ -70,6 +73,57 @@
         IAA-CSIC
       </a>
     </div>
+      </div>
+
+      <figure class="portrait-fig reveal" hidden>
+        <img class="portrait" src="portrait.jpg" alt="Antonio Giménez Alcázar">
+      </figure>
+    </div>
+
+      <figure class="spectrum-fig reveal">
+        <svg class="spectrum" viewBox="0 0 1000 220" role="img"
+             aria-label="Schematic optical spectrum of an extreme emission-line galaxy, showing the [O III] 4959 and 5007 doublet rising far above the continuum">
+          <defs>
+            <radialGradient id="oiiiGlow" cx="50%" cy="100%" r="72%">
+              <stop class="g-in" offset="0%"/>
+              <stop class="g-mid" offset="55%"/>
+              <stop class="g-out" offset="100%"/>
+            </radialGradient>
+          </defs>
+
+          <ellipse class="sp-glow" cx="433" cy="190" rx="74" ry="150" fill="url(#oiiiGlow)"/>
+
+          <path class="sp-continuum" d="M 0,184.4 L 5,184.9 L 10,185.9 L 15,185.1 L 20,185.4 L 25,185.6 L 30,184.8 L 35,185.5 L 40,185.6 L 45,185.8 L 50,184.1 L 55,184.4 L 60,183.7 L 65,185.1 L 70,184.7 L 75,183.2 L 80,185.2 L 85,185.3 L 90,184.7 L 95,184.8 L 100,184.0 L 105,183.9 L 110,185.3 L 115,184.5 L 120,185.0 L 125,185.3 L 130,185.0 L 135,186.0 L 140,186.0 L 145,186.8 L 150,186.0 L 155,186.1 L 160,185.6 L 165,185.7 L 170,185.1 L 175,184.5 L 180,186.0 L 185,185.9 L 190,185.6 L 195,185.4 L 200,184.6 L 205,184.6 L 210,185.0 L 215,184.8 L 220,186.6 L 225,186.0 L 230,187.2 L 235,186.4 L 240,187.7 L 245,187.5 L 250,185.6 L 255,186.0 L 260,187.4 L 265,186.3 L 270,187.2 L 275,185.7 L 280,184.8 L 285,185.9 L 290,186.1 L 295,185.0 L 300,184.6 L 305,185.2 L 310,186.8 L 315,186.5 L 320,185.4 L 325,185.9 L 330,185.8 L 335,186.0 L 340,187.8 L 345,186.6 L 350,187.5 L 355,187.3 L 360,186.7 L 365,187.8 L 370,186.3 L 375,187.3 L 380,185.9 L 385,186.4 L 390,185.7 L 395,185.7 L 400,187.2 L 405,186.8 L 410,185.7 L 415,187.1 L 420,185.8 L 425,186.4 L 430,187.7 L 435,187.5 L 440,186.6 L 445,188.7 L 450,187.2 L 455,187.5 L 460,188.7 L 465,187.7 L 470,187.6 L 475,186.9 L 480,186.8 L 485,187.7 L 490,186.8 L 495,187.4 L 500,186.7 L 505,186.7 L 510,187.8 L 515,186.8 L 520,187.0 L 525,187.8 L 530,186.5 L 535,186.6 L 540,188.6 L 545,188.6 L 550,187.6 L 555,187.7 L 560,189.1 L 565,189.6 L 570,188.1 L 575,189.7 L 580,189.5 L 585,188.7 L 590,188.1 L 595,187.2 L 600,186.9 L 605,188.7 L 610,187.0 L 615,187.9 L 620,186.9 L 625,188.2 L 630,187.8 L 635,187.2 L 640,187.2 L 645,188.6 L 650,187.5 L 655,188.1 L 660,189.0 L 665,189.9 L 670,189.5 L 675,188.9 L 680,190.3 L 685,188.7 L 690,188.2 L 695,188.6 L 700,188.8 L 705,187.7 L 710,187.8 L 715,188.0 L 720,188.3 L 725,187.3 L 730,187.8 L 735,189.0 L 740,189.3 L 745,188.8 L 750,189.0 L 755,189.1 L 760,188.3 L 765,188.4 L 770,188.6 L 775,190.7 L 780,190.4 L 785,191.0 L 790,189.0 L 795,190.2 L 800,189.8 L 805,190.2 L 810,189.1 L 815,190.4 L 820,188.1 L 825,189.0 L 830,189.3 L 835,189.6 L 840,189.3 L 845,189.3 L 850,189.6 L 855,190.0 L 860,189.0 L 865,190.0 L 870,190.8 L 875,190.9 L 880,190.2 L 885,191.1 L 890,191.4 L 895,190.8 L 900,190.9 L 905,190.3 L 910,190.6 L 915,190.5 L 920,189.1 L 925,190.2 L 930,190.8 L 935,190.4 L 940,189.9 L 945,189.1 L 950,189.9 L 955,189.7 L 960,189.5 L 965,190.6 L 970,189.2 L 975,190.9 L 980,189.6 L 985,191.1 L 990,191.0 L 995,190.6 L 1000,191.7"/>
+
+          <g class="sp-lines">
+            <path class="sp-line"        style="--d:.10s" d="M36.300000000000004 190 L39.7 150 L43.1 190 Z"/>
+            <path class="sp-line"        style="--d:.18s" d="M227.6 190 L231 172 L234.4 190 Z"/>
+            <path class="sp-line"        style="--d:.26s" d="M390.6 190 L394 145 L397.4 190 Z"/>
+            <path class="sp-line sp-key" style="--d:.42s" d="M421.6 190 L425 133 L428.4 190 Z"/>
+            <path class="sp-line sp-key" style="--d:.34s" d="M436.6 190 L440 20 L443.4 190 Z"/>
+            <path class="sp-line"        style="--d:.50s" d="M922.6 190 L926 70 L929.4 190 Z"/>
+          </g>
+
+          <g class="sp-axis">
+            <path d="M0 196 H1000"/>
+            <path d="M125 196 v5 M437.5 196 v5 M750 196 v5"/>
+          </g>
+
+          <g class="sp-tick">
+            <text x="125" y="213" text-anchor="middle">4000</text>
+            <text x="437.5" y="213" text-anchor="middle">5000</text>
+            <text x="750" y="213" text-anchor="middle">6000 Å</text>
+          </g>
+
+          <g class="sp-label">
+            <text class="sp-label-key" x="455" y="30">[O III] λλ4959, 5007</text>
+            <text x="926" y="58" text-anchor="middle">Hα</text>
+            <text x="385" y="138" text-anchor="end">Hβ</text>
+            <text x="52" y="143">[O II]</text>
+          </g>
+        </svg>
+        <figcaption>Schematic optical spectrum of an extreme emission-line galaxy. The [O&nbsp;III] doublet towering over the continuum is the signature I select on.</figcaption>
+      </figure>
   </div>
 </section>
 

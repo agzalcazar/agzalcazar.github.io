@@ -11,7 +11,7 @@ A static site. No build step, no dependencies, no framework.
 ```
 index.html    content and structure
 style.css     design system and responsive layout
-script.js     theme toggle, scroll reveals, active nav
+script.js     theme toggle, star field, parallax, scroll reveals, active nav
 .nojekyll     tells GitHub Pages to serve the files as-is
 ```
 
@@ -58,14 +58,15 @@ A new publication goes at the top of the `<ol class="pubs">` list:
 
 ### Adding a photo
 
-Drop the image in the repository and add it inside `<div class="wrap hero-in">`:
+Save a portrait as `portrait.jpg` in this folder. That is the whole step — the
+page checks whether the file loads and only then shows the frame, so while the
+file is absent the hero simply renders without it and no broken image appears.
 
-```html
-<img class="portrait" src="portrait.jpg" alt="Antonio Giménez Alcázar">
-```
+Crop it roughly 4:5 (portrait); anything else is centre-cropped to fit. Around
+800×1000 px is plenty — keep it under ~300 KB so the page stays fast.
 
-Then style it in `style.css` — the hero is a normal block layout, so a floated or
-grid-placed portrait fits without touching anything else.
+To use a different filename or format, change the `src` on the `<img class="portrait">`
+tag in `index.html`.
 
 ### Changing the accent colour
 
@@ -83,5 +84,9 @@ python3 -m http.server 8000 --directory .
 - Dark and light themes follow the system setting and can be overridden with the
   toggle in the header; the choice persists in `localStorage`.
 - Fonts are Newsreader, IBM Plex Sans and IBM Plex Mono, loaded from Google Fonts.
+- The hero spectrum is drawn as inline SVG in `index.html`; it is a schematic of
+  an extreme emission-line galaxy, not real data, and the caption says so.
+- The star field is painted on a canvas from a fixed seed, so it looks the same
+  on every visit. All motion is disabled under `prefers-reduced-motion`.
 - The FECYT CV PDF is deliberately **not** in this repository — it contains a
   national ID number and should not be published.
