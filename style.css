@@ -772,6 +772,14 @@ a:hover { color: var(--accent); }
 
 .shots-strip { margin: 0 0 44px; }
 
+/* The conference strip reads as a row, so every frame matches. The three
+   sources are cropped to 4:3 already; this just holds the line if one is
+   ever swapped for a photo of another shape. */
+.shots-strip .shot img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
 .shot { margin: 0; min-width: 0; }
 
 .shot img {
